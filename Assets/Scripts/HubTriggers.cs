@@ -11,11 +11,15 @@ public class HubTriggers : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.CompareTag("Player") == false) return;
+
         sideCameraDISableEvent.TriggerEvent();
     }
 
     private void OnTriggerExit(Collider other)
     {
+        if (other.CompareTag("Player") == false) return;
+
         sideCameraENableEvent.TriggerEvent();
     }
 

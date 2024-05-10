@@ -1,3 +1,4 @@
+using Paulos.Projectiles;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -112,7 +113,10 @@ public class PlayerInputHandler : MonoBehaviour
 
     private void SpacePerformed(InputAction.CallbackContext context)
     {
-        sideCameraActivated.OnEventTriggered();
+        Debugger.Log(context, Debugger.PriorityLevel.Medium);
+
+        // sideCameraActivated.OnEventTriggered();
+        Projectile_Manager._Instance.FireProjectileForward("Projectile_Bullet_S", transform);
     }
 
     public void SideCameraActivated()
