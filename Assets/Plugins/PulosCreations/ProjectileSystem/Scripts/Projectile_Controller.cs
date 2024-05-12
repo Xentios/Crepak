@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 namespace Paulos.Projectiles
 {
@@ -187,7 +188,10 @@ namespace Paulos.Projectiles
        
         private void OnTriggerEnter(Collider other)
         {
-            if (other.transform.gameObject.layer.Equals(layerMask) == false) return;
+
+
+            if (layerMask == (layerMask | (1 << other.transform.gameObject.layer))) return;
+            //if (other.transform.gameObject.layer .Equals(layerMask) == false) return;
 
             if (targetHit)
                 return;

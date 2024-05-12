@@ -1,12 +1,5 @@
 fileFormatVersion: 2
-guid: b61aaa5915791ad4e841f834e9a3e529
-AssetOrigin:
-  serializedVersion: 1
-  productId: 282945
-  packageName: Armored Robot Soldier
-  packageVersion: 1.0
-  assetPath: Assets/Monte Hotate/Armored Robot Soldier/Animations/RobotSoldierAnim.fbx
-  uploadId: 658989
+guid: fb8fa5642dacead48a41ead22a085beb
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -1071,7 +1064,8 @@ ModelImporter:
     hasTranslationDoF: 0
     hasExtraRoot: 1
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 85c1988c9b83e3940a1ab7f4eb41c79c, type: 3}
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 85c1988c9b83e3940a1ab7f4eb41c79c,
+    type: 3}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 3
   humanoidOversampling: 1
