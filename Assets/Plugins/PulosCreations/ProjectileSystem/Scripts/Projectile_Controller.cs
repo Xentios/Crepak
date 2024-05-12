@@ -106,7 +106,7 @@ namespace Paulos.Projectiles
 
             if (projectileMovementType == ProjectileMovementTypes.forward)
             {
-                myRigidBody.velocity = myTransform.forward * speed;
+                myRigidBody.linearVelocity = myTransform.forward * speed;
             }
             else if (projectileMovementType == ProjectileMovementTypes.homing)
             {
@@ -117,7 +117,7 @@ namespace Paulos.Projectiles
             {
                 Vector3 dir = (currentTargetTF.position - myTransform.position).normalized;
                 myTransform.forward = dir;
-                myRigidBody.velocity = dir * speed;
+                myRigidBody.linearVelocity = dir * speed;
             }
 
             if (!lifeTimerRunning)
@@ -139,14 +139,14 @@ namespace Paulos.Projectiles
                 //Check if the target has been Disabled or Destroyed.
                 if (currentTargetTF == null || targetObj.activeInHierarchy == false)
                 {
-                    myRigidBody.velocity = myTransform.forward * speed;
+                    myRigidBody.linearVelocity = myTransform.forward * speed;
 
                     targetValid = false;
                 }
                 else
                 {
                     Vector3 moveDirection = (currentTargetTF.position - myTransform.position).normalized;
-                    myRigidBody.velocity = moveDirection * speed;
+                    myRigidBody.linearVelocity = moveDirection * speed;
                     myTransform.LookAt(currentTargetTF);
                 }
 
@@ -176,7 +176,7 @@ namespace Paulos.Projectiles
 
             if (!targetHit)
             {
-                myRigidBody.velocity = Vector3.zero;
+                myRigidBody.linearVelocity = Vector3.zero;
 
                 myCollider.enabled = false;
                 meshObject.SetActive(false);
@@ -209,7 +209,7 @@ namespace Paulos.Projectiles
                 lifeTimerRunning = false;
             }
 
-            myRigidBody.velocity = Vector3.zero;
+            myRigidBody.linearVelocity = Vector3.zero;
 
             myCollider.enabled = false;
             meshObject.SetActive(false);

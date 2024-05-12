@@ -41,7 +41,7 @@ public class FireProjectile : MonoBehaviour
 
     public void FireForward()
     {
-        transform.rotation = Quaternion.identity;
+        //transform.rotation = Quaternion.identity;
         TurretRecoil();
 
         projectileManager.FireProjectileForward(projectileNames[projectileNR], firePointTF);

@@ -5,6 +5,12 @@ using UnityEngine.InputSystem;
 public class PlayerInputHandler : MonoBehaviour
 {
     [SerializeField]
+    private Transform characterVisual;
+
+    [SerializeField]
+    private PlayerWeapon playerWeapon;
+
+    [SerializeField]
     private GameEventListener sideCameraActivated;
 
 
@@ -25,7 +31,7 @@ public class PlayerInputHandler : MonoBehaviour
 
     private Vector3 movementDirection;
     private bool isWalking=false;
-
+    private bool isShooting=false;
 
     private void Awake()
     {
@@ -39,12 +45,14 @@ public class PlayerInputHandler : MonoBehaviour
 
     private void OnEnable()
     {
-        inputActions.Enable();
+        //inputActions.Enable();
         movement.action.started += MovementStarted;
         movement.action.performed += MovementPerformed;
         movement.action.canceled += MovementCanceled;
-
+        
+        space.action.started += SpaceStarted;
         space.action.performed += SpacePerformed;
+        space.action.canceled += SpaceCanceled; 
     }
 
     private void OnDisable()
@@ -53,7 +61,9 @@ public class PlayerInputHandler : MonoBehaviour
         movement.action.performed -= MovementPerformed;
         movement.action.canceled -= MovementCanceled;
 
+        space.action.started-= SpaceStarted;
         space.action.performed -= SpacePerformed;
+        space.action.canceled -= SpaceCanceled;
         inputActions.Disable();
     }
 
@@ -62,8 +72,13 @@ public class PlayerInputHandler : MonoBehaviour
         if (isWalking == true)
         {
             characterController.Move(movementDirection*Time.deltaTime*speed);
+            characterVisual.LookAt(movementDirection+transform.position, Vector3.up);
         }
         
+        if(isShooting == true)
+        {
+            playerWeapon.Shoot();
+        }
     }
 
 
@@ -110,15 +125,25 @@ public class PlayerInputHandler : MonoBehaviour
 
     }
 
+    private void SpaceStarted(InputAction.CallbackContext context)
+    {
+        Debugger.Log(context, Debugger.PriorityLevel.Medium);
+
+        isShooting = true;
+    }
 
     private void SpacePerformed(InputAction.CallbackContext context)
     {
         Debugger.Log(context, Debugger.PriorityLevel.Medium);
-
-        // sideCameraActivated.OnEventTriggered();
-        Projectile_Manager._Instance.FireProjectileForward("Projectile_Bullet_S", transform);
     }
 
+    private void SpaceCanceled(InputAction.CallbackContext context)
+    {
+        Debugger.Log(context, Debugger.PriorityLevel.Medium);
+
+        isShooting = false;
+    }
+     
     public void SideCameraActivated()
     {
         sideCameraActive = true;

@@ -278,6 +278,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Projectile_Bullet_L
       objectReference: {fileID: 0}
+    - target: {fileID: 936938067705596423, guid: 3cbc38e5091e69944af3173e29f02280, type: 3}
+      propertyPath: m_TagString
+      value: Projectile
+      objectReference: {fileID: 0}
     - target: {fileID: 6958353904057078126, guid: 3cbc38e5091e69944af3173e29f02280, type: 3}
       propertyPath: m_RootOrder
       value: 0
