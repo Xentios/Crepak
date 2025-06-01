@@ -1,9 +1,13 @@
 using Paulos.Projectiles;
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerInputHandler : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject orderArea;
+
     [SerializeField]
     private Transform characterVisual;
 
@@ -25,13 +29,13 @@ public class PlayerInputHandler : MonoBehaviour
 
 
     public float speed = 1f;
-    public bool sideCameraActive = false;
+    public bool isSideCameraActive = false;
 
     CharacterController characterController;
 
     private Vector3 movementDirection;
     private bool isWalking=false;
-    private bool isShooting=false;
+    private bool isSpaced=false;
 
     private void Awake()
     {
@@ -75,9 +79,22 @@ public class PlayerInputHandler : MonoBehaviour
             characterVisual.LookAt(movementDirection+transform.position, Vector3.up);
         }
         
-        if(isShooting == true)
+        if(isSpaced == true)
         {
-            playerWeapon.Shoot();
+            if(isSideCameraActive == false)
+            {
+                if(orderArea.activeInHierarchy == false)
+                {
+                    orderArea.transform.position = transform.position+Vector3.down;
+                    orderArea.SetActive(true);
+                }
+               
+            }
+            else
+            {
+                playerWeapon.Shoot();
+            }
+            
         }
     }
 
@@ -105,7 +122,7 @@ public class PlayerInputHandler : MonoBehaviour
 
         isWalking = true;
 
-        if (sideCameraActive == false)
+        if (isSideCameraActive == false)
         {
            
             movementDirection = result.AsXZ();
@@ -129,7 +146,7 @@ public class PlayerInputHandler : MonoBehaviour
     {
         Debugger.Log(context, Debugger.PriorityLevel.Medium);
 
-        isShooting = true;
+        isSpaced = true;
     }
 
     private void SpacePerformed(InputAction.CallbackContext context)
@@ -141,17 +158,17 @@ public class PlayerInputHandler : MonoBehaviour
     {
         Debugger.Log(context, Debugger.PriorityLevel.Medium);
 
-        isShooting = false;
+        isSpaced = false;
     }
      
     public void SideCameraActivated()
     {
-        sideCameraActive = true;
+        isSideCameraActive = true;
     }
 
     public void SideCameraDEActivated()
     {
-        sideCameraActive = false;
+        isSideCameraActive = false;
     }
 
 

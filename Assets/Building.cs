@@ -1,8 +1,13 @@
+using NUnit.Framework;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Building : MonoBehaviour
 {
+    [SerializeField]
+    private List<GameObject> otherBuildings;
+
     [SerializeField]
     private MinionManager minionManager;
 
@@ -39,6 +44,10 @@ public class Building : MonoBehaviour
             if(capturedTime > captureMaxTime )
             {
                 isCaptured=true;
+                foreach (var item in otherBuildings)
+                {
+                    item.SetActive(true);
+                }
                 SpawnMinion();
             }
 

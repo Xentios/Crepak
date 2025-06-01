@@ -55,6 +55,14 @@ public class FireProjectile : MonoBehaviour
         projectileManager.FireProjectileHoming(projectileNames[projectileNR], firePointTF, targetTF);
     }
 
+    public void FireHoming(Transform targetTF)
+    {
+       
+        TurretRecoil();
+
+        projectileManager.FireProjectileHoming(projectileNames[projectileNR], firePointTF, targetTF);
+    }
+
     public void FireAimed()
     {
         myTF.LookAt(targetTF);

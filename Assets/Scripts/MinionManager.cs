@@ -33,20 +33,11 @@ public class MinionManager : MonoBehaviour
     private void Awake()
     {
         minions = new List<IAstarAI>();
+        minionsGameObjects = new List<GameObject>();
     }
     void Start()
     {
-        foreach (var go in minionsGameObjects)
-        {
-            IAstarAI ai = null;
-            ai = go.GetComponent<AIPath>() == null ? ai : go.GetComponent<AIPath>();
-            ai = go.GetComponent<AILerp>() == null ? ai : go.GetComponent<AILerp>();           
-            if (ai != null)
-            {
-                minions.Add(ai);
-            }
-
-        }
+        AddMinions(minionsGameObjects);
     }
 
    
@@ -68,6 +59,42 @@ public class MinionManager : MonoBehaviour
             {
                 minions[i].canMove = true;
             }
+        }
+
+    }
+
+    public void ReturnMinions(List<GameObject> minionsWorking)
+    {
+        AddMinions(minionsWorking);
+    }
+
+    public GameObject GetAMinion()
+    {
+        if(minions.Count> 0)
+        {
+            var lastMinion = minionsGameObjects[minions.Count - 1];
+            minions.RemoveAt(minions.Count - 1);
+            minionsGameObjects.RemoveAt(minions.Count - 1);
+            return lastMinion;
+        }
+       
+        return null;    
+    }
+
+
+    private void AddMinions(List<GameObject> newMinions)
+    {
+        foreach (var go in newMinions)
+        {
+            IAstarAI ai = null;
+            ai = go.GetComponent<AIPath>() == null ? ai : go.GetComponent<AIPath>();
+            ai = go.GetComponent<AILerp>() == null ? ai : go.GetComponent<AILerp>();
+            if (ai != null)
+            {
+                minions.Add(ai);
+                minionsGameObjects.Add(go);
+            }
+
         }
 
     }

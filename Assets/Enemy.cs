@@ -15,6 +15,11 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private GameObject Target;
 
+
+
+    [SerializeField]
+    private GameEvent enemyDied;
+
     private void Awake()
     {
         ai=GetComponent<AILerp>();
@@ -38,6 +43,7 @@ public class Enemy : MonoBehaviour
             health -= dmgTakenPerBullet;
             if(health < 0)
             {
+                enemyDied.TriggerEvent();
                 GameObject.Destroy(gameObject);
             }
         }
