@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 157546318219515077}
   - component: {fileID: 3479602821026572348}
   - component: {fileID: 382826886970387541}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 3447679951156366721}
   - component: {fileID: 3165539438700734632}
   - component: {fileID: 5977273876193633225}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Minion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
