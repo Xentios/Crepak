@@ -1,5 +1,3 @@
-using Paulos.Projectiles;
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -34,8 +32,8 @@ public class PlayerInputHandler : MonoBehaviour
     CharacterController characterController;
 
     private Vector3 movementDirection;
-    private bool isWalking=false;
-    private bool isSpaced=false;
+    private bool isWalking = false;
+    private bool isSpaced = false;
 
     private void Awake()
     {
@@ -44,7 +42,7 @@ public class PlayerInputHandler : MonoBehaviour
 
     private void Start()
     {
-        
+
     }
 
     private void OnEnable()
@@ -53,10 +51,10 @@ public class PlayerInputHandler : MonoBehaviour
         movement.action.started += MovementStarted;
         movement.action.performed += MovementPerformed;
         movement.action.canceled += MovementCanceled;
-        
+
         space.action.started += SpaceStarted;
         space.action.performed += SpacePerformed;
-        space.action.canceled += SpaceCanceled; 
+        space.action.canceled += SpaceCanceled;
     }
 
     private void OnDisable()
@@ -65,36 +63,36 @@ public class PlayerInputHandler : MonoBehaviour
         movement.action.performed -= MovementPerformed;
         movement.action.canceled -= MovementCanceled;
 
-        space.action.started-= SpaceStarted;
+        space.action.started -= SpaceStarted;
         space.action.performed -= SpacePerformed;
         space.action.canceled -= SpaceCanceled;
-        inputActions.Disable();
+        // inputActions.Disable();
     }
 
     private void Update()
     {
         if (isWalking == true)
         {
-            characterController.Move(movementDirection*Time.deltaTime*speed);
-            characterVisual.LookAt(movementDirection+transform.position, Vector3.up);
+            characterController.Move(movementDirection * Time.deltaTime * speed);
+            characterVisual.LookAt(movementDirection + transform.position, Vector3.up);
         }
-        
-        if(isSpaced == true)
+
+        if (isSpaced == true)
         {
-            if(isSideCameraActive == false)
+            if (isSideCameraActive == false)
             {
-                if(orderArea.activeInHierarchy == false)
+                if (orderArea.activeInHierarchy == false)
                 {
-                    orderArea.transform.position = transform.position+Vector3.down;
+                    orderArea.transform.position = transform.position + Vector3.down;
                     orderArea.SetActive(true);
                 }
-               
+
             }
             else
             {
                 playerWeapon.Shoot();
             }
-            
+
         }
     }
 
@@ -124,7 +122,7 @@ public class PlayerInputHandler : MonoBehaviour
 
         if (isSideCameraActive == false)
         {
-           
+
             movementDirection = result.AsXZ();
         }
         else
@@ -160,7 +158,7 @@ public class PlayerInputHandler : MonoBehaviour
 
         isSpaced = false;
     }
-     
+
     public void SideCameraActivated()
     {
         isSideCameraActive = true;

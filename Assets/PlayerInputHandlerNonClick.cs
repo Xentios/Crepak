@@ -26,6 +26,11 @@ public class PlayerInputHandlerNonClick : MonoBehaviour
     {
         characterController = GetComponent<CharacterController>();
     }
+    private void Start()
+    {
+        movementDirection = Vector3.zero;
+        mousePosition = Vector2.zero;
+    }
 
     private void OnEnable()
     {
@@ -46,7 +51,7 @@ public class PlayerInputHandlerNonClick : MonoBehaviour
         movement.action.canceled -= MovementCanceled;
 
 
-        inputActions.Disable();
+        // inputActions.Disable();
     }
     private void MovementCanceled(InputAction.CallbackContext context)
     {
