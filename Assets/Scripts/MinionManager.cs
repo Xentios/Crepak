@@ -33,7 +33,7 @@ public class MinionManager : MonoBehaviour
     private void Awake()
     {
         minions = new List<IAstarAI>();
-        minionsGameObjects = new List<GameObject>();
+       // minionsGameObjects = new List<GameObject>();
     }
     void Start()
     {
@@ -92,7 +92,7 @@ public class MinionManager : MonoBehaviour
             if (ai != null)
             {
                 minions.Add(ai);
-                minionsGameObjects.Add(go);
+               // minionsGameObjects.Add(go);
             }
 
         }

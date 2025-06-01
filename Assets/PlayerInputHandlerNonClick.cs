@@ -79,6 +79,10 @@ public class PlayerInputHandlerNonClick : MonoBehaviour
                 movementDirection = hit.point - transform.position;
                 movementDirection.y = 0;
             }
+            else
+            {
+                movementDirection = Vector3.zero;
+            }
 
         }
         else
